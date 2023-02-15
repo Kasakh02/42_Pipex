@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+         #
+#    By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 11:42:38 by hcorrea-          #+#    #+#              #
-#    Updated: 2023/02/14 17:21:16 by hcorrea-         ###   ########.fr        #
+#    Updated: 2023/02/15 16:10:14 by hcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,23 @@ PIPEX 			=	pipex
 PROJECTDIR		=	src
 INC 			=	inc
 OBJ_DIR			=	obj
-HEADER			=	$(INC)/pipex.h
+HEADER			=	$(INC)
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 
-SRC				=	pipex.c	\
-					utils.c	\
+SRC				=	mandatory/main.c		\
+					mandatory/utils.c		\
+					mandatory/cmd.c			\
+					mandatory/free.c		\
+					mandatory/init.c		\
+					mandatory/ft_split.c	\
 
-SRCB			=	bonus.c	\
-					utils.c	\
+SRCB			=	bonus/main.c	\
+					bonus/utils.c	\
+					bonus/cmd.c		\
+					bonus/free.c	\
+					bonus/init.c	\
 
 OBJ				:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJB			:=	$(addprefix $(OBJ_DIR)/, $(SRCB:.c=.o))
@@ -41,7 +48,7 @@ ERRIGNORE		=	2>/dev/null
 
 all:				$(PIPEX)
 					@echo "$(GREEN)Pipex succesfully compiled!$(END)"
-					@sleep 2
+					@sleep 0.5
 					@clear
 
 $(PIPEX):			$(OBJ)
@@ -62,9 +69,9 @@ clean:
 					@echo "$(RED)All objects deleted!$(END)"
 					
 fclean:				clean
-					@$(RM) $(PIPEX)
-					@echo "$(RED)All libraries deleted!$(END)"
-					@sleep 2
+					@$(RM) $(PIPEX) bonus
+					@echo "$(RED)All executables deleted!$(END)"
+					@sleep 0.5
 					@clear
 
 re:					fclean all
@@ -74,12 +81,12 @@ norminette:
 					@clear
 					@echo "$(GREEN)Norminette check!$(END)"
 
-bonus:				$(OBJ) $(OBJB)
+bonus:				$(PIPEX) $(OBJB)
 					@clear
 					@echo "$(YELLOW)Compiling Pipex Bonus...$(END)"
 					@$(CC) $(CFLAGS) -I $(HEADER) $(OBJB) -o $@
 					@echo "$(GREEN)Pipex Bonus succesfully compiled!$(END)"
-					@sleep 2
+					@sleep 0.5
 					@clear
 
 .PHONY: clean fclean re bonus norminette
