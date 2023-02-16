@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:08:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/15 15:21:15 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:12:13 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../inc/pipex.h"
 
 void	setup(t_a *a, int argc, char **argv, char **envp)
 {
@@ -35,6 +35,7 @@ char	**path_finder(t_a *a, char **envp)
 	char	**path;
 
 	i = 0;
+	line = NULL;
 	while (envp[i])
 	{
 		if (!ft_strncmp(envp[i], "PATH=", 5))
@@ -44,7 +45,7 @@ char	**path_finder(t_a *a, char **envp)
 		}
 		i++;
 	}
-	if (!line)
+	if (line == NULL)
 		err_handler(a, 1, "Error while setting up");
 	path = ft_split(line, ':');
 	return (path);

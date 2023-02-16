@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:09:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/15 16:42:56 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:57:20 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../inc/pipex.h"
 
 char	**get_args(t_a *a, char **argv)
 {

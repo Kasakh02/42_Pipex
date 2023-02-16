@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:31:53 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/15 16:35:05 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:57:17 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../inc/pipex.h"
 
 void	run_cmd(t_a *a, char **envp)
 {

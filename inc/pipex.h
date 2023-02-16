@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:06:47 by hcorrea-          #+#    #+#             */
-/*   Updated: 2023/02/15 16:34:31 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:10:41 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <wait.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 # include <fcntl.h>
 # include <errno.h>

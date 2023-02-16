@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 10:18:47 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/15 14:45:51 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:57:00 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../inc/pipex.h"
 
 void	free_zero(t_a *a)
 {

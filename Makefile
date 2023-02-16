@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+         #
+#    By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 11:42:38 by hcorrea-          #+#    #+#              #
-#    Updated: 2023/02/15 16:10:14 by hcorrea-         ###   ########.fr        #
+#    Updated: 2023/02/16 14:42:41 by hcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_DIR			=	obj
 HEADER			=	$(INC)
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address -fsanitize=leak
 
 SRC				=	mandatory/main.c		\
 					mandatory/utils.c		\
