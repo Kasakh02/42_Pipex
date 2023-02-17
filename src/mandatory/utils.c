@@ -6,25 +6,25 @@
 /*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:09:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/16 14:57:20 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:51:32 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
-char	**get_args(t_a *a, char **argv)
+char	**get_args(t_pip *pip, char **argv)
 {
 	int		i;
 	int		j;
 	int		k;
 	char	**args;
 
-	args = (char **)malloc(sizeof(char *) * (a->cmd_num + 1));
+	args = (char **)malloc(sizeof(char *) * (pip->cmd_num + 1));
 	if (!args)
-		err_handler(a, 0, "Error getting the commands");
+		put_error(pip, 0, "Error getting the commands");
 	i = 0;
 	j = 2;
-	while (i < a->cmd_num)
+	while (i < pip->cmd_num)
 	{
 		k = 0;
 		while (argv[j][k] == ' ' || argv[j][k] == '\t')

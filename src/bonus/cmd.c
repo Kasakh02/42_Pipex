@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_setup.c                                    :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 18:46:57 by gda-cruz          #+#    #+#             */
-/*   Updated: 2022/12/25 13:09:11 by gda-cruz         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:59:03 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../inc/pipex.h"
 
-void	filter_cmd(t_a *a)
+void	filter_cmd(t_pip *pip)
 {
-	close(a->pipe_fd[0]);
-	if (a->i == 0)
+	close(pip->pipe_fd[0]);
+	if (pip->i == 0)
 	{
-		dup2(a->in_file, STDIN_FILENO);
-		dup2(a->pipe_fd[1], STDOUT_FILENO);
+		dup2(pip->in_file, STDIN_FILENO);
+		dup2(pip->pipe_fd[1], STDOUT_FILENO);
 	}
-	else if (a->i == (a->cmd_num - 1))
-		dup2(a->out_file, STDOUT_FILENO);
+	else if (pip->i == (pip->cmd_num - 1))
+		dup2(pip->out_file, STDOUT_FILENO);
 	else
-		dup2(a->pipe_fd[1], STDOUT_FILENO);
+		dup2(pip->pipe_fd[1], STDOUT_FILENO);
 }
 
-void	setup_cmd(t_a *a)
+void	init_cmd(t_pip *pip)
 {
-	a->cmds = ft_split(a->args[a->i], ' ');
-	if (!a->cmds)
-		err_handler(a, 2, "Error getting commands");
-	get_cmd_path(a);
-	if (!a->cmd_path)
-		err_handler(a, 2, "Error getting command path");
+	pip->cmds = ft_split(pip->args[pip->i], ' ');
+	if (!pip->cmds)
+		put_error(pip, 2, "Error getting commands");
+	get_cmd_path(pip);
+	if (!pip->cmd_path)
+		put_error(pip, 2, "Error getting command path");
 }
 
-static int	valid_path(t_a *a)
+static int	valid_path(t_pip *pip)
 {
 	char	*temp;
 	int		ok;
 	int		i;
 
 	i = -1;
-	while (a->path[++i])
+	while (pip->path[++i])
 	{
-		temp = ft_strjoin(a->path[i], a->cmds[0]);
+		temp = ft_strjoin(pip->path[i], pip->cmds[0]);
 		ok = access(temp, F_OK);
 		if (ok < 0)
 		{
@@ -54,7 +54,7 @@ static int	valid_path(t_a *a)
 		}
 		else
 		{
-			a->cmd_path = ft_strdup(temp);
+			pip->cmd_path = ft_strdup(temp);
 			free(temp);
 			return (1);
 		}
@@ -62,19 +62,19 @@ static int	valid_path(t_a *a)
 	return (0);
 }
 
-void	get_cmd_path(t_a *a)
+void	get_cmd_path(t_pip *pip)
 {
 	int		ok;
 	int		valid;
 
-	ok = access(a->cmds[0], F_OK);
+	ok = access(pip->cmds[0], F_OK);
 	if (ok == 0)
 	{
-		a->cmd_path = ft_strdup(a->cmds[0]);
+		pip->cmd_path = ft_strdup(pip->cmds[0]);
 		return ;
 	}
-	valid = valid_path(a);
+	valid = valid_path(pip);
 	if (valid)
 		return ;
-	err_handler(a, 2, "Error getting command path");
+	put_error(pip, 2, "Error getting command path");
 }

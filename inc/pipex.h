@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:06:47 by hcorrea-          #+#    #+#             */
-/*   Updated: 2023/02/16 12:10:41 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:06:24 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,41 @@
 # define STDOUT 1
 # define STDERR 2
 
-typedef struct s_a
+typedef struct s_pip
 {
 	int		in_file;
 	int		out_file;
 	int		cmd_num;
+	char	*cmd_path;
+	char	**cmds;
 	char	**args;
 	char	**path;
 	int		pipe_fd[2];
-	int		i;
 	pid_t	pid;
-	char	*cmd_path;
-	char	**cmds;
-}				t_a;
+	int		i;
+}				t_pip;
 
 
-void	setup(t_a *a, int argc, char **argv, char **envp);
-void	openfile(t_a *a, int argc, char **argv);
-char	**path_finder(t_a *a, char **envp);
+void	init(t_pip *pip, int argc, char **argv, char **env);
+void	openfile(t_pip *pip, int argc, char **argv);
+char	**path_finder(t_pip *pip, char **env);
 
-void	setup_cmd(t_a *a);
-void	get_cmd_path(t_a *a);
-void	run_cmd(t_a *a, char **envp);
-void	filter_cmd(t_a *a);
+void	init_cmd(t_pip *pip);
+void	get_cmd_path(t_pip *pip);
+void	exe(t_pip *pip, char **env);
+void	filter_cmd(t_pip *pip);
 
-void	err_handler(t_a *a, int err_code, char *err);
-void	free_zero(t_a *a);
-void	free_one(t_a *a);
-void	free_two(t_a *a);
+void	put_error(t_pip *pip, int err_code, char *err);
+void	free_fd(t_pip *pip);
+void	free_args(t_pip *pip);
+void	free_path_cmd(t_pip *pip);
 
-char	**get_args(t_a *a, char **argv);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**get_args(t_pip *pip, char **argv);
+char	*ft_strjoin(char const *str1, char const *str2);
+char	*ft_strdup(const char *str);
+size_t	ft_strlen(const char *str);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *str, char c);
 
 #endif
