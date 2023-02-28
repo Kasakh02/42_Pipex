@@ -6,11 +6,70 @@
 /*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:31:53 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/17 13:52:06 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:41:13 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
+
+char	*ft_strrchr(const char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+	{
+		if (str[i] == (unsigned char)c)
+			return (&((char *)str)[i]);
+		i--;
+	}
+	return (NULL);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	temp;
+
+	temp = (unsigned char)c;
+	while (temp != *s)
+	{
+		if (*s == 0)
+			return (0);
+		++s;
+	}
+	return ((char *)s);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	i;
+	size_t	l;
+
+	if (!s)
+		return (NULL);
+	l = ft_strlen(s);
+	if (start >= l)
+	{
+		sub = malloc(sizeof(char));
+		if (!sub)
+			return (NULL);
+		*sub = '\0';
+		return (sub);
+	}
+	if (l < len)
+		return (ft_strdup((char *)s + start));
+	i = 0;
+	sub = (char *)malloc(sizeof(char) * (len + 1));
+	if (!sub)
+		return (NULL);
+	while (start < l && i < len)
+		sub[i++] = s[start++];
+	sub[i] = '\0';
+	return (sub);
+}
 
 void	exe(t_pip *pip, char **env)
 {

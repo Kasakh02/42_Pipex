@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:08:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/17 13:58:48 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:27:05 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,57 @@
 
 void	init(t_pip *pip, int argc, char **argv, char **envp)
 {
-	openfile(pip, argc, argv);
+	if (!ft_strncmp(argv[1], "here_doc", 9))
+		pre_hd(pip, argc, argv);
+	else
+		openfile(pip, argc, argv);
 	pip->cmd_num = argc - 3;
 	pip->args = get_args(pip, argv);
 	pip->path = path_finder(pip, envp);
+}
+
+void	pre_hd(t_pip *pip, int argc, char **argv)
+{
+	int	tmp;
+
+	if (argc < 6)
+	{
+		write(STDERR, "Heredoc needs at least 6 args to run\n", 37);
+		exit(EXIT_FAILURE);
+	}
+	pip->heredoc = 1;
+	pip->out_file = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	tmp = open(".store", O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	if (pip->out_file == -1 || tmp == -1)
+		put_error(pip, 0, "Error while setting up");
+	heredoc(argv, tmp);
+	close(tmp);
+	pip->in_file = open(".store", O_RDONLY);
+	if (pip->in_file == -1)
+		put_error(pip, 0, "Error while setting up");
+}
+
+void	heredoc(char **argv, int fd)
+{
+	char	*tmp;
+	char	*lim;
+	char	*line;
+
+	tmp = "EOF\0";
+	(void)argv;
+	lim = ft_strjoin(tmp, "\n");
+	while (1)
+	{
+		write(1, "> ", 2);
+		line = get_next_line(0);
+		if (ft_strlen(line) == ft_strlen(lim))
+			if (!ft_strncmp(lim, line, ft_strlen(lim)))
+				break ;
+		write(fd, line, ft_strlen(line));
+		free(line);
+	}
+	free(lim);
+	free(line);
 }
 
 void	openfile(t_pip *pip, int argc, char **argv)

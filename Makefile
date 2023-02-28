@@ -6,7 +6,7 @@
 #    By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 11:42:38 by hcorrea-          #+#    #+#              #
-#    Updated: 2023/02/17 14:25:11 by hcorrea-         ###   ########.fr        #
+#    Updated: 2023/02/28 14:28:51 by hcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,21 @@ HEADER			=	$(INC)
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
 
-SRC				=	mandatory/main.c		\
-					mandatory/utils.c		\
-					mandatory/cmd.c			\
-					mandatory/free.c		\
-					mandatory/init.c		\
-					mandatory/ft_split.c	\
+SRC				=	mandatory/main.c			\
+					mandatory/utils.c			\
+					mandatory/cmd.c				\
+					mandatory/free.c			\
+					mandatory/init.c			\
+					mandatory/ft_split.c		\
+					mandatory/get_next_line.c	\
 
-SRCB			=	bonus/main.c		\
-					bonus/utils.c		\
-					bonus/cmd.c			\
-					bonus/free.c		\
-					bonus/init.c		\
+SRCB			=	bonus/main.c			\
+					bonus/utils.c			\
+					bonus/cmd.c				\
+					bonus/free.c			\
+					bonus/init.c			\
 					bonus/ft_split.c		\
+					bonus/get_next_line.c	\
 
 OBJ				:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJB			:=	$(addprefix $(OBJ_DIR)/, $(SRCB:.c=.o))
@@ -80,7 +82,7 @@ clean:
 					@echo "$(RED)All objects deleted!$(END)"
 					
 fclean:				clean
-					@$(RM) $(PIPEX) bonus input.txt output.txt
+					@$(RM) $(PIPEX) bonus input.txt output.txt .store
 					@echo "$(RED)All executables deleted!$(END)"
 					@sleep 0.5
 					@clear

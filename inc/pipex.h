@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:06:47 by hcorrea-          #+#    #+#             */
-/*   Updated: 2023/02/17 14:06:24 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:41:20 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <unistd.h>
 
 # define STDIN 0
 # define STDOUT 1
@@ -37,17 +38,24 @@ typedef struct s_pip
 	int		pipe_fd[2];
 	pid_t	pid;
 	int		i;
+	int 	heredoc;
 }				t_pip;
 
 
 void	init(t_pip *pip, int argc, char **argv, char **env);
+void	pre_hd(t_pip *pip, int argc, char **argv);
+void	heredoc(char **argv, int fd);
 void	openfile(t_pip *pip, int argc, char **argv);
 char	**path_finder(t_pip *pip, char **env);
 
 void	init_cmd(t_pip *pip);
 void	get_cmd_path(t_pip *pip);
-void	exe(t_pip *pip, char **env);
 void	filter_cmd(t_pip *pip);
+
+char	*ft_strrchr(const char *str, int c);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	exe(t_pip *pip, char **env);
 
 void	put_error(t_pip *pip, int err_code, char *err);
 void	free_fd(t_pip *pip);
@@ -61,5 +69,6 @@ size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 
 char	**ft_split(char const *str, char c);
+char	*get_next_line(int fd);
 
 #endif
