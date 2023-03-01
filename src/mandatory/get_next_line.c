@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:27:22 by hcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/01 08:58:59 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 09:43:07 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	int	nl_index(char *matrix)
 	while (matrix[i])
 	{
 		if (matrix[i] == '\n')
-			return (i);
+			return (i);i
 		i++;
 	}
 	return (0);
