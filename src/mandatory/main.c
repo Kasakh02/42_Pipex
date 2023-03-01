@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:31:53 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/03/01 08:54:11 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:39:14 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_pip	pip;
 
-	if (argc < 5)
+	if (argc < 5 || argc > 5)
 	{
 		write(STDERR, "Invalid number of arguments.\n", 29);
 		exit(EXIT_FAILURE);
