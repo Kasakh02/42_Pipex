@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:09:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/03/01 09:39:44 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:46:51 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**get_args(t_pip *pip, char **argv)
 	if (!args)
 		put_error(pip, 0, "Error getting the commands");
 	i = 0;
-	j = 2;
+	j = 2 + pip->heredoc;
 	while (i < pip->cmd_num)
 	{
 		k = 0;

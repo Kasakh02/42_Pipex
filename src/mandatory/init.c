@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:08:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/03/01 08:56:36 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:47:03 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init(t_pip *pip, int argc, char **argv, char **envp)
 		pre_hd(pip, argc, argv);
 	else
 		openfile(pip, argc, argv);
-	pip->cmd_num = argc - 3;
+	pip->cmd_num = argc - 3 - pip->heredoc;
 	pip->args = get_args(pip, argv);
 	pip->path = path_finder(pip, envp);
 }
@@ -50,8 +50,7 @@ void	heredoc(char **argv, int fd)
 	char	*lim;
 	char	*line;
 
-	tmp = "EOF\0";
-	(void)argv;
+	tmp = ft_strdup(argv[2]);
 	lim = ft_strjoin(tmp, "\n");
 	while (1)
 	{
@@ -63,6 +62,7 @@ void	heredoc(char **argv, int fd)
 		write(fd, line, ft_strlen(line));
 		free(line);
 	}
+	free(tmp);
 	free(lim);
 	free(line);
 }
