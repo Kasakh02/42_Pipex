@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:06:47 by hcorrea-          #+#    #+#             */
-/*   Updated: 2023/02/28 12:41:20 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 08:58:49 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ typedef struct s_pip
 	int		pipe_fd[2];
 	pid_t	pid;
 	int		i;
-	int 	heredoc;
+	int		heredoc;
 }				t_pip;
-
 
 void	init(t_pip *pip, int argc, char **argv, char **env);
 void	pre_hd(t_pip *pip, int argc, char **argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:08:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/28 14:27:05 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 08:56:36 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	heredoc(char **argv, int fd)
 
 void	openfile(t_pip *pip, int argc, char **argv)
 {
+	pip->heredoc = 0;
 	pip->in_file = open(argv[1], O_RDONLY);
 	pip->out_file = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
 	if (pip->in_file == -1 || pip->out_file == -1)
@@ -95,5 +96,6 @@ char	**path_finder(t_pip *pip, char **envp)
 	if (line == NULL)
 		put_error(pip, 1, "Error while setting up");
 	path = ft_split(line, ':');
+	free(line);
 	return (path);
 }

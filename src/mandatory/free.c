@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 10:18:47 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/17 13:59:15 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 08:38:17 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_fd(t_pip *pip)
 		close(pip->in_file);
 	if (pip->out_file)
 		close(pip->out_file);
+	if (pip->heredoc)
+		unlink(".store");
 }
 
 void	free_args(t_pip *pip)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:09:48 by gda-cruz          #+#    #+#             */
-/*   Updated: 2023/02/17 13:51:32 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/01 08:58:19 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**get_args(t_pip *pip, char **argv)
 	if (!args)
 		put_error(pip, 0, "Error getting the commands");
 	i = 0;
-	j = 2;
+	j = 2 + pip->heredoc;
 	while (i < pip->cmd_num)
 	{
 		k = 0;
@@ -97,7 +97,6 @@ char	*ft_strdup(const char *s)
 	dup[i] = '\0';
 	return (dup);
 }
-
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
